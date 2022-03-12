@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myweb-pod
+  labels:
+    app: myweb
+spec:
+  containers:
+  - name: web
+    image: speedracer5dave/nodesjs-read-config:latest
+    volumeMounts:
+    - name: myinit
+      mountPath: /user/shared/app
+    ports:
+    - containerPort: 8080
+  initContainers:
+  - name: configurer
+    image: busybox
+    command: 
+    - wget
+    - "-O"
+    - "/user/shared/app/config.json"
+    - https://raw.githubusercontent.com/speedracer55/ckad-crash-course/master/exercises/07-creating-init-container/app/config/config.json
+    volumeMounts:
+    - name: myinit
+      mountPath: /user/shared/app
+  volumes: 
+  - name: myinit
+    emptyDir: {}
