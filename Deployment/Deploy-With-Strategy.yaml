@@ -23,7 +23,7 @@ spec:
       containers:
       - name: httpd
         image: httpd:2.4.27
-        port:
+        ports:
         - containerPort: 80
 ---
 apiVersion: v1
