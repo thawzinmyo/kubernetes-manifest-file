@@ -27,119 +27,21 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"creationTimestamp":"2025-01-03T12:51:33Z","labels":{"run":"logger"},"name":"logger","namespace":"default","resourceVersion":"4213","uid":"181e057e-9a07-4c70-9486-7f23cdb5be99"},"spec":{"containers":[{"image":"nginx:alpine","imagePullPolicy":"IfNotPresent","name":"logger","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/www/nginx","name":"log-volume"},{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-rr2z7","readOnly":true}]}],"dnsPolicy":"ClusterFirst","enableServiceLinks":true,"preemptionPolicy":"PreemptLowerPriority","priority":0,"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"serviceAccount":"default","serviceAccountName":"default","terminationGracePeriodSeconds":30,"tolerations":[{"effect":"NoExecute","key":"node.kubernetes.io/not-ready","operator":"Exists","tolerationSeconds":300},{"effect":"NoExecute","key":"node.kubernetes.io/unreachable","operator":"Exists","tolerationSeconds":300}],"volumes":[{"name":"log-volume","persistentVolumeClaim":{"claimName":"log-claim"}},{"name":"kube-api-access-rr2z7","projected":{"defaultMode":420,"sources":[{"serviceAccountToken":{"expirationSeconds":3607,"path":"token"}},{"configMap":{"items":[{"key":"ca.crt","path":"ca.crt"}],"name":"kube-root-ca.crt"}},{"downwardAPI":{"items":[{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"},"path":"namespace"}]}}]}}]},"status":{"conditions":[{"lastProbeTime":null,"lastTransitionTime":"2025-01-03T12:51:33Z","message":"0/1 nodes are available: persistentvolumeclaim \"log-volume\" not found. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.","reason":"Unschedulable","status":"False","type":"PodScheduled"}],"phase":"Pending","qosClass":"BestEffort"}}
-  creationTimestamp: "2025-01-03T12:54:11Z"
   labels:
     run: logger
   name: logger
-  namespace: default
-  resourceVersion: "4428"
-  uid: 29be21d6-24ea-43fb-8b45-cb34bb52effa
 spec:
   containers:
   - image: nginx:alpine
-    imagePullPolicy: IfNotPresent
     name: logger
-    resources: {}
-    terminationMessagePath: /dev/termination-log
-    terminationMessagePolicy: File
     volumeMounts:
-    - mountPath: /var/www/nginx
-      name: log-volume
-    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: kube-api-access-rr2z7
-      readOnly: true
+    - name: log-vol
+      mountPath: /var/www/nginx
+    resources: {}
   dnsPolicy: ClusterFirst
-  enableServiceLinks: true
-  nodeName: controlplane
-  preemptionPolicy: PreemptLowerPriority
-  priority: 0
   restartPolicy: Always
-  schedulerName: default-scheduler
-  securityContext: {}
-  serviceAccount: default
-  serviceAccountName: default
-  terminationGracePeriodSeconds: 30
-  tolerations:
-  - effect: NoExecute
-    key: node.kubernetes.io/not-ready
-    operator: Exists
-    tolerationSeconds: 300
-  - effect: NoExecute
-    key: node.kubernetes.io/unreachable
-    operator: Exists
-    tolerationSeconds: 300
   volumes:
-  - name: log-volume
+  - name: log-vol
     persistentVolumeClaim:
       claimName: log-claim
-  - name: kube-api-access-rr2z7
-    projected:
-      defaultMode: 420
-      sources:
-      - serviceAccountToken:
-          expirationSeconds: 3607
-          path: token
-      - configMap:
-          items:
-          - key: ca.crt
-            path: ca.crt
-          name: kube-root-ca.crt
-      - downwardAPI:
-          items:
-          - fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.namespace
-            path: namespace
-status:
-  conditions:
-  - lastProbeTime: null
-    lastTransitionTime: "2025-01-03T12:54:13Z"
-    status: "True"
-    type: PodReadyToStartContainers
-  - lastProbeTime: null
-    lastTransitionTime: "2025-01-03T12:54:11Z"
-    status: "True"
-    type: Initialized
-  - lastProbeTime: null
-    lastTransitionTime: "2025-01-03T12:54:13Z"
-    status: "True"
-    type: Ready
-  - lastProbeTime: null
-    lastTransitionTime: "2025-01-03T12:54:13Z"
-    status: "True"
-    type: ContainersReady
-  - lastProbeTime: null
-    lastTransitionTime: "2025-01-03T12:54:11Z"
-    status: "True"
-    type: PodScheduled
-  containerStatuses:
-  - containerID: containerd://6fa5435aaf41b6eb6d16daff587945b4c6f7d2ba5c74ee4112561d80c5ddf2ff
-    image: docker.io/library/nginx:alpine
-    imageID: docker.io/library/nginx@sha256:2140dad235c130ac861018a4e13a6bc8aea3a35f3a40e20c1b060d51a7efd250
-    lastState: {}
-    name: logger
-    ready: true
-    restartCount: 0
-    started: true
-    state:
-      running:
-        startedAt: "2025-01-03T12:54:13Z"
-    volumeMounts:
-    - mountPath: /var/www/nginx
-      name: log-volume
-    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      name: kube-api-access-rr2z7
-      readOnly: true
-      recursiveReadOnly: Disabled
-  hostIP: 192.11.3.6
-  hostIPs:
-  - ip: 192.11.3.6
-  phase: Running
-  podIP: 10.244.0.7
-  podIPs:
-  - ip: 10.244.0.7
-  qosClass: BestEffort
-  startTime: "2025-01-03T12:54:11Z"
+status: {}
