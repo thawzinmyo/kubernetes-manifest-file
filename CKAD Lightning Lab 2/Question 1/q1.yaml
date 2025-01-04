@@ -1,0 +1,134 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"creationTimestamp":"2025-01-04T16:58:36Z","labels":{"run":"nginx"},"name":"nginx1401","namespace":"dev1401","resourceVersion":"1382","uid":"1a2c82d0-3f6e-485e-8ace-99dfbc90aa2f"},"spec":{"containers":[{"image":"kodekloud/nginx","imagePullPolicy":"IfNotPresent","livenessProbe":{"exec":{"command":["ls","/var/www/html/file_check"]},"initialDelaySeconds":10,"periodSeconds":60},"name":"nginx","ports":[{"containerPort":9080,"protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/","port":9080,"scheme":"HTTP"},"periodSeconds":10,"successThreshold":1,"timeoutSeconds":1},"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-wt9nf","readOnly":true}]}],"dnsPolicy":"ClusterFirst","enableServiceLinks":true,"nodeName":"node01","preemptionPolicy":"PreemptLowerPriority","priority":0,"restartPolicy":"OnFailure","schedulerName":"default-scheduler","securityContext":{},"serviceAccount":"default","serviceAccountName":"default","terminationGracePeriodSeconds":30,"tolerations":[{"effect":"NoExecute","key":"node.kubernetes.io/not-ready","operator":"Exists","tolerationSeconds":300},{"effect":"NoExecute","key":"node.kubernetes.io/unreachable","operator":"Exists","tolerationSeconds":300}],"volumes":[{"name":"kube-api-access-wt9nf","projected":{"defaultMode":420,"sources":[{"serviceAccountToken":{"expirationSeconds":3607,"path":"token"}},{"configMap":{"items":[{"key":"ca.crt","path":"ca.crt"}],"name":"kube-root-ca.crt"}},{"downwardAPI":{"items":[{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"},"path":"namespace"}]}}]}}]},"status":{"conditions":[{"lastProbeTime":null,"lastTransitionTime":"2025-01-04T16:58:51Z","status":"True","type":"PodReadyToStartContainers"},{"lastProbeTime":null,"lastTransitionTime":"2025-01-04T16:58:36Z","status":"True","type":"Initialized"},{"lastProbeTime":null,"lastTransitionTime":"2025-01-04T16:58:36Z","message":"containers with unready status: [nginx]","reason":"ContainersNotReady","status":"False","type":"Ready"},{"lastProbeTime":null,"lastTransitionTime":"2025-01-04T16:58:36Z","message":"containers with unready status: [nginx]","reason":"ContainersNotReady","status":"False","type":"ContainersReady"},{"lastProbeTime":null,"lastTransitionTime":"2025-01-04T16:58:36Z","status":"True","type":"PodScheduled"}],"containerStatuses":[{"containerID":"containerd://251054c5fa57c9ea757e91ba5a5ea5364540cb41c35f1450d89e4dcb465c71c7","image":"docker.io/kodekloud/nginx:latest","imageID":"docker.io/kodekloud/nginx@sha256:2862900861517dfaf9e0ed0f4fa199744a7410f4f78520866031c725c386bb5e","lastState":{},"name":"nginx","ready":false,"restartCount":0,"started":true,"state":{"running":{"startedAt":"2025-01-04T16:58:51Z"}},"volumeMounts":[{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-wt9nf","readOnly":true,"recursiveReadOnly":"Disabled"}]}],"hostIP":"192.13.75.3","hostIPs":[{"ip":"192.13.75.3"}],"phase":"Running","podIP":"10.244.192.1","podIPs":[{"ip":"10.244.192.1"}],"qosClass":"BestEffort","startTime":"2025-01-04T16:58:36Z"}}
+  creationTimestamp: "2025-01-04T17:02:07Z"
+  labels:
+    run: nginx
+  name: nginx1401
+  namespace: dev1401
+  resourceVersion: "1714"
+  uid: b688b155-53fa-43c0-a420-589cdda9f871
+spec:
+  containers:
+  - image: kodekloud/nginx
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      exec:
+        command:
+        - ls
+        - /var/www/html/file_check
+      failureThreshold: 3
+      initialDelaySeconds: 10
+      periodSeconds: 60
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: nginx
+    ports:
+    - containerPort: 9080
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: 9080
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-wt9nf
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: node01
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: OnFailure
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-wt9nf
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-04T17:02:10Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-04T17:02:07Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-04T17:02:10Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-04T17:02:10Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-01-04T17:02:07Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://9a323046402b6a71d2a4138b71e68334cc9e35c4bbfa4894f7e194f1d0de4b5f
+    image: docker.io/kodekloud/nginx:latest
+    imageID: docker.io/kodekloud/nginx@sha256:2862900861517dfaf9e0ed0f4fa199744a7410f4f78520866031c725c386bb5e
+    lastState: {}
+    name: nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-01-04T17:02:09Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-wt9nf
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.13.75.3
+  hostIPs:
+  - ip: 192.13.75.3
+  phase: Running
+  podIP: 10.244.192.1
+  podIPs:
+  - ip: 10.244.192.1
+  qosClass: BestEffort
+  startTime: "2025-01-04T17:02:07Z"
