@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   generation: 1
-  name: default-deny
+  name: allow-secure-pod
   namespace: default
   resourceVersion: "4449"
 spec:
@@ -13,9 +13,9 @@ spec:
   - Ingress
   ingress:
   - from:
-     - podSelector:
+    - podSelector:
         matchLabels:
-          run: secure-pod
+          name: webapp-color 
     ports:
     - protocol: TCP
       port: 80

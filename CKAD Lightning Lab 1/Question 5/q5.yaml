@@ -19,16 +19,20 @@ spec:
       containers:
       - image: redis:alpine
         name: redis
+        ports:
+        - containerPort: 6379
         volumeMounts:
         - name: data
-          mountPath: 
-        - name: redis
-          mountPath: 
+          mountPath: /redis-master-data 
+        - name: redis-config
+          mountPath: /redis-master 
         resources:
           requests:
             cpu: "0.2"
-        volumes:
-        - name: data
-          emptyDir: {}
-        - name: 
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: redis-config
+        configMap:
+          name: redis-config
 status: {}
