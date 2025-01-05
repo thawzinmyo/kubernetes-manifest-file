@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: whalesay
+spec:
+  completions: 10
+  backoffLimit: 6
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: busybox
+        name: whalesay
+        command: ["bash"]
+        args:
+        - -c
+        - echo "cowsay I am going to ace CKAD!"
+        resources: {}
+      restartPolicy: Never
+status: {}
