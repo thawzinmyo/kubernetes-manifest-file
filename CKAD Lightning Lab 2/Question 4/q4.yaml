@@ -13,7 +13,7 @@ spec:
           service:
             name: video-service
             port:
-              number: 30093
+              number: 8080
         path: /video
         pathType: Exact
   - host: apparels.ecom-store.com
@@ -23,7 +23,7 @@ spec:
           service:
             name: apparels-service
             port:
-              number: 30093
+              number: 8080
         path: /wear
         pathType: Exact
 status:

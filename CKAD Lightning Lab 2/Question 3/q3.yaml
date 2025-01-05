@@ -18,6 +18,8 @@ spec:
     - mountPath: /etc/secret-volume
       name: secret-volume
       readOnly: true
+  nodeSelector:
+    kubernetes.io/hostname: controlplane
   volumes:
     - name: secret-volume
       secret:
