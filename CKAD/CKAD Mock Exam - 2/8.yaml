@@ -14,7 +14,7 @@ spec:
     - name: type
       value: planet
   - image: busybox
-    name: europe
+    name: europa
     command: 
     - sleep
     - "4800"
